@@ -153,14 +153,16 @@ async def add_product_category(message: types.Message, state: FSMContext):
             data["price"] = info[0][-1]
             await Order.next()
             await bot.send_message(message.from_user.id,
-                                   "Если у вас есть какая-то дополнительная информация, которую нам нужно знать, пожалуйста напишите её здесь",
+                                   "Если у вас есть какая-то дополнительная информация, которую нам нужно знать, "
+                                   "пожалуйста напишите её здесь",
                                    reply_markup=ReplyKeyboardRemove())
         elif str(message.text) == "Вернуться в главное меню":
             await state.finish()
             await Order.type.set()
             markup = get_keyboard(Data("db.db").get_type())
             await bot.send_message(message.from_user.id,
-                                   f"Здравствуйте, {message.from_user.first_name}, пожалуйста, выберите что вас интересует ",
+                                   f"Здравствуйте, {message.from_user.first_name}, "
+                                   f"пожалуйста, выберите что вас интересует ",
                                    reply_markup=markup)
         else:
             await bot.send_message(message.from_user.id, "Мы пока Вас не понимаем, выберите вариант из списка",
@@ -175,7 +177,7 @@ async def add_product_category(message: types.Message, state: FSMContext):
         await Order.type.set()
         markup = get_keyboard(Data("db.db").get_type())
         await bot.send_message(message.from_user.id,
-                               f"Здравствуйте, {message.from_user.first_name}, пожалуйста, выберите что вас интересует ",
+                               f"Здравствуйте, {message.from_user.first_name}, пожалуйста, выберите что вас интересует",
                                reply_markup=markup)
     else:
         mes = ""
@@ -288,12 +290,14 @@ async def start(message: types.Message):
         markup.add("Сделать заказ")
         await Usluga.state_.set()
         await bot.send_message(user_id,
-                               f"Здравствуйте, {message.from_user.first_name}, пожалуйста, выберите что вас интересует ",
+                               f"Здравствуйте, {message.from_user.first_name}, пожалуйста, выберите что вас интересует",
                                reply_markup=markup)
     else:
         await Add.name.set()
         await bot.send_message(user_id,
-                               f"Здравствуйте, для использования бота Вам необходимо указать контактные данные. В будущем это позволит нам идентифицировать Вас. Для начала введите, пожалуйста, Ваше имя")
+                               f"Здравствуйте, для использования бота Вам необходимо указать контактные данные. В "
+                               f"будущем это позволит нам идентифицировать Вас. Для начала введите, пожалуйста, "
+                               f"Ваше имя")
 
 
 @dp.message_handler()
@@ -304,7 +308,7 @@ async def izi_message(message: types.Message):
         markup.add("Сделать заказ")
         await Usluga.state_.set()
         await bot.send_message(message.from_user.id,
-                               f"Здравствуйте, {message.from_user.first_name}, пожалуйста, выберите что вас интересует ",
+                               f"Здравствуйте, {message.from_user.first_name}, пожалуйста, выберите что вас интересует",
                                reply_markup=markup)
 
 
